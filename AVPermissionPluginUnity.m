@@ -17,8 +17,9 @@ extern void _requestCameraPermission(CallbackFunc callback) {
 
 extern void _requestMicPermission(CallbackFunc callback) {
     requestMicPermissionCallback = callback;
-    if (requestCameraPermissionCallback == NULL) return;
+    if (requestMicPermissionCallback == NULL) return;
     AVPermission* avPermission = [[AVPermission alloc] init];
+    
     [avPermission requestMicPermissionWithCompletionHandler:^(BOOL granted) {
         if (granted) {
             requestMicPermissionCallback([@"true" UTF8String]);
