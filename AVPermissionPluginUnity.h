@@ -8,7 +8,7 @@
 #ifndef PermissionProvider_h
 #define PermissionProvider_h
 
-typedef void (*CallbackFunc)(const char *);
+typedef void (*CallbackFunc)(const int, const char *);
 static CallbackFunc requestCameraPermissionCallback;
 static CallbackFunc requestMicPermissionCallback;
 

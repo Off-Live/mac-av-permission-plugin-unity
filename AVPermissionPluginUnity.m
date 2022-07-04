@@ -1,31 +1,31 @@
 #import "AVPermissionPluginUnity.h"
 #import "AVPermission.h"
 
-extern void _requestCameraPermission(CallbackFunc callback) {
+extern void _requestCameraPermission(int instanceId, CallbackFunc callback) {
     requestCameraPermissionCallback = callback;
     if (requestCameraPermissionCallback == NULL) return;
     AVPermission* avPermission = [[AVPermission alloc] init];
     [avPermission requestCameraPermissionWithCompletionHandler:^(BOOL granted) {
         if (granted) {
-            requestCameraPermissionCallback([@"true" UTF8String]);
+            requestCameraPermissionCallback(instanceId, [@"true" UTF8String]);
         }
         else {
-            requestCameraPermissionCallback([@"false" UTF8String]);
+            requestCameraPermissionCallback(instanceId, [@"false" UTF8String]);
         }
     }];
 }
 
-extern void _requestMicPermission(CallbackFunc callback) {
+extern void _requestMicPermission(int instanceId, CallbackFunc callback) {
     requestMicPermissionCallback = callback;
     if (requestMicPermissionCallback == NULL) return;
     AVPermission* avPermission = [[AVPermission alloc] init];
     
     [avPermission requestMicPermissionWithCompletionHandler:^(BOOL granted) {
         if (granted) {
-            requestMicPermissionCallback([@"true" UTF8String]);
+            requestMicPermissionCallback(instanceId, [@"true" UTF8String]);
         }
         else {
-            requestMicPermissionCallback([@"false" UTF8String]);
+            requestMicPermissionCallback(instanceId, [@"false" UTF8String]);
         }
     }];
 }
